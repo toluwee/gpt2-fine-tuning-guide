@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Fine-Tuning GPT-2 Guide</title>
+  <title>🚀 Fine-Tuning GPT-2 Guide</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet"/>
   <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.css" rel="stylesheet"/>
   <style>
@@ -11,46 +11,77 @@
       font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 2rem;
-      background-color: #f9f9f9;
-      color: #222;
+      background-color: #f0f4f8;
+      color: #1e293b;
     }
-    h1, h2 {
+
+    h1 {
       color: #0f172a;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
     }
+
+    h2 {
+      color: #334155;
+      background: #e0f2fe;
+      padding: 0.6em 1em;
+      border-left: 6px solid #0284c7;
+      border-radius: 4px;
+      margin-top: 2rem;
+    }
+
     .blog-post {
       max-width: 900px;
       margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     }
+
     pre {
-      background: #2d2d2d;
+      background: #1e1e1e;
       padding: 1em;
-      border-radius: 8px;
+      border-radius: 10px;
       overflow-x: auto;
+      margin-top: 1rem;
     }
+
     code {
       font-size: 0.95em;
     }
+
     ul {
       margin-left: 1.5em;
+      padding-left: 0.5em;
+      color: #0f172a;
+    }
+
+    ul li {
+      margin-bottom: 0.6em;
+    }
+
+    p {
+      font-size: 1.05rem;
     }
   </style>
 </head>
 <body>
 <div class="blog-post">
-<h1>Fine-Tuning GPT-2 with Hugging Face Transformers: Complete Guide</h1>
-<p>Learn how to adapt GPT-2 for specific tasks using custom data...</p>
+  <h1>🚀 Fine-Tuning GPT-2 with Hugging Face Transformers: Complete Guide</h1>
+  <p>Learn how to adapt GPT-2 for specific tasks using custom data. This guide walks you step-by-step through tokenization, training, and saving your fine-tuned model. 💡</p>
 
-<h2>Prerequisites</h2>
-<pre><code class="language-bash">pip install transformers datasets torch accelerate</code></pre>
-<p>Requirements: Python 3.8+, GPU with 8GB+ VRAM</p>
+  <h2>📦 Prerequisites</h2>
+  <pre><code class="language-bash">pip install transformers datasets torch accelerate</code></pre>
+  <p><strong>✅ Requirements:</strong> Python 3.8+, GPU with 8GB+ VRAM</p>
 
-<h2>1. Preparing Your Dataset</h2>
-<pre><code class="language-python">from datasets import load_dataset
+  <h2>📁 1. Preparing Your Dataset</h2>
+  <pre><code class="language-python">from datasets import load_dataset
 
 dataset = load_dataset('text', data_files={'train': 'train.txt', 'valid': 'valid.txt'})</code></pre>
 
-<h2>2. Tokenization</h2>
-<pre><code class="language-python">from transformers import GPT2Tokenizer
+  <h2>🧹 2. Tokenization</h2>
+  <pre><code class="language-python">from transformers import GPT2Tokenizer
 
 tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 tokenizer.pad_token = tokenizer.eos_token  # Critical for GPT-2
@@ -63,13 +94,13 @@ def tokenize_function(examples):
 
 tokenized_data = dataset.map(tokenize_function, batched=True)</code></pre>
 
-<h2>3. Model Initialization</h2>
-<pre><code class="language-python">from transformers import GPT2LMHeadModel
+  <h2>🧠 3. Model Initialization</h2>
+  <pre><code class="language-python">from transformers import GPT2LMHeadModel
 
 model = GPT2LMHeadModel.from_pretrained('gpt2')</code></pre>
 
-<h2>4. Training Setup</h2>
-<pre><code class="language-python">from transformers import TrainingArguments, Trainer
+  <h2>⚙️ 4. Training Setup</h2>
+  <pre><code class="language-python">from transformers import TrainingArguments, Trainer
 
 training_args = TrainingArguments(
     output_dir='./results',
@@ -87,24 +118,22 @@ trainer = Trainer(
     eval_dataset=tokenized_data['valid']
 )</code></pre>
 
-<h2>5. Start Training</h2>
-<pre><code class="language-python">trainer.train()
-</code></pre>
+  <h2>🏁 5. Start Training</h2>
+  <pre><code class="language-python">trainer.train()</code></pre>
 
-<h2>6. Evaluation & Saving</h2>
-<pre><code class="language-python">results = trainer.evaluate()
+  <h2>📊 6. Evaluation & Saving</h2>
+  <pre><code class="language-python">results = trainer.evaluate()
 print(f"Validation Loss: {results['eval_loss']}")
 
 model.save_pretrained('fine-tuned-gpt2')
-tokenizer.save_pretrained('fine-tuned-gpt2')
-</code></pre>
+tokenizer.save_pretrained('fine-tuned-gpt2')</code></pre>
 
-<h2>Pro Tips</h2>
-<ul>
-<li>Use gradient checkpointing for large batches</li>
-<li>Implement early stopping with patience=2</li>
-<li>Try smaller variants like DistilGPT-2 for faster training</li>
-</ul>
+  <h2>💡 Pro Tips</h2>
+  <ul>
+    <li>🪄 Use <strong>gradient checkpointing</strong> for large batches</li>
+    <li>⏱ Implement <strong>early stopping</strong> with <code>patience=2</code></li>
+    <li>⚡ Try smaller variants like <strong>DistilGPT-2</strong> for faster training</li>
+  </ul>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
