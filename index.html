@@ -88,4 +88,22 @@ trainer = Trainer(
 )</code></pre>
 
 <h2>5. Start Training</h2>
-<pre><code class="lan
+<pre><code class="language-python">trainer.train()
+</code></pre>
+
+<h2>6. Evaluation & Saving</h2>
+<pre><code class="language-python">results = trainer.evaluate()
+print(f"Validation Loss: {results['eval_loss']}")
+
+model.save_pretrained('fine-tuned-gpt2')
+tokenizer.save_pretrained('fine-tuned-gpt2')
+</code></pre>
+
+<h2>Pro Tips</h2>
+<ul>
+<li>Use gradient checkpointing for large batches</li>
+<li>Implement early stopping with patience=2</li>
+<li>Try smaller variants like DistilGPT-2 for faster training</li>
+</ul>
+</div>
+</body>
