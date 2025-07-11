@@ -49,7 +49,6 @@ Enable Pages in GitHub → Settings → Pages → Source: main, Folder: / (root)
 
 ## ✍️ Author
 Tolu Olukoga
-LinkedIn | Email
 
 ## 📄 License
 This guide is open-source and free to use under the MIT License.
